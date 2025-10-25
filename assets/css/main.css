@@ -1,0 +1,8 @@
+@theme {
+  --font-seyi: sans-serif;
+	--text-10xl: 40px;
+}
+
+.mono {
+	@apply font-seyi text-10xl text-red-400;
+}
