@@ -1,2 +1,43 @@
 @layer components {
+  .dashboard-header {
+    width: 100%;
+    height: 64px;
+    @apply px-4 py-6 flex items-center justify-between rounded-none border-b;
+
+    & div:first-child {
+      @apply flex items-center gap-2;
+
+      & img {
+        @apply size-10;
+      }
+
+      & h1 {
+        @apply text-2xl;
+      }
+    }
+  }
+
+  .dashboard-cards {
+    @apply flex flex-col gap-4 w-full items-center;
+
+    @variant md {
+      @apply flex-row flex-wrap items-center;
+    }
+
+    & .dashboard-card {
+      @apply w-full bg-white border shadow-sm p-4;
+
+      @variant md {
+        @apply flex-1;
+      }
+
+      & h2 {
+        @apply text-lg mb-6;
+      }
+
+      & h2 + p {
+        @apply text-2xl font-medium;
+      }
+    }
+  }
 }

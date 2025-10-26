@@ -1,9 +1,10 @@
 import { Outlet } from "react-router";
+import DashboardHeader from "../components/dashboard/DashboardHeader";
 
 export default function DashboardLayout() {
   return (
     <main>
-      <div>this is it</div>
+      <DashboardHeader />
       <Outlet />
     </main>
   );

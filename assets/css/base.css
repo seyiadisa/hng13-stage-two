@@ -1,2 +1,32 @@
 @layer base {
+  * {
+    @apply border-gray-300 rounded-md;
+  }
+
+  h1 {
+    @apply text-4xl font-medium;
+  }
+
+  .dashboard-body {
+    @apply px-4 py-6;
+
+    & > div:first-child {
+      @apply flex flex-col gap-4 mb-6;
+
+      & nav {
+        @apply flex gap-4 w-full;
+      }
+
+      & a {
+        @apply flex-1 w-full text-center p-2 text-lg border;
+      }
+
+      & .active {
+      }
+
+      & > p {
+        @apply text-3xl font-medium;
+      }
+    }
+  }
 }

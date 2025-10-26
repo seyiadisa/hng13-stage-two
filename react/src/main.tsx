@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App.tsx";
 import Dashboard from "./pages/DashboardHome.tsx";
 import DashboardLayout from "./layout/DashboardLayout.tsx";
-import TasksManagement from "./pages/TasksManagement.tsx";
+import TicketManagement from "./pages/TicketManagement.tsx";
 import Signup from "./pages/Signup.tsx";
 import Login from "./pages/Login.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -21,7 +21,7 @@ createRoot(document.getElementById("root")!).render(
 
         <Route element={<DashboardLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="tasks" element={<TasksManagement />} />
+          <Route path="tickets" element={<TicketManagement />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

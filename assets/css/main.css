@@ -1,7 +1,12 @@
-@import "./component.css";
 @import "./base.css";
+@import "./component.css";
+@import "./icons.css";
 
 @theme {
+  --color-background: hsl(0 0 96);
+  --color-foreground: hsl(210 11 4);
+  --color-primary: hsl(195 47 44);
+  --color-accent: hsl(29 96 56);
 }
 
 * {
@@ -11,4 +16,11 @@
 body {
   padding: 0;
   margin: 0;
+  @apply bg-white flex justify-center;
+}
+
+.body {
+  width: 100vw;
+  max-width: 1440px;
+  @apply bg-background text-foreground min-h-dvh;
 }
