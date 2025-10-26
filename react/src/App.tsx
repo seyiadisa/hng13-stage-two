@@ -25,6 +25,8 @@ function App() {
         </div>
 
         <div className="wavy" />
+        <div className="circle1" />
+        <div className="circle2" />
       </section>
 
       <section className="features">

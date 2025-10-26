@@ -21,6 +21,7 @@ body {
 
 .body {
   width: 100vw;
+  overflow-x: hidden;
   max-width: 1440px;
   @apply flex flex-col bg-background text-foreground min-h-dvh;
 }

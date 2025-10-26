@@ -58,10 +58,24 @@
       @apply bg-white;
     }
 
-    .wavy {
+    & .circle1 {
+      background-image: url("/svg/circle.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      @apply absolute object-cover rounded-none size-32 right-0 top-30 translate-x-1/2;
+    }
+
+    & .circle2 {
+      background-image: url("/svg/circle.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      @apply absolute object-cover rounded-none size-32 right-0 top-full -translate-y-1/2 translate-x-1/2;
+    }
+
+    & .wavy {
       background-image: url("/svg/wavy.svg");
       background-repeat: no-repeat;
-      @apply w-full h-40 block rounded-none! object-contain absolute left-0 right-0 bottom-0 translate-y-[98%] text-center overflow-hidden;
+      @apply w-full h-40 block rounded-none! object-contain absolute left-0 right-0 bottom-0 translate-y-[98%] text-center;
 
       @variant md {
         @apply h-80;
