@@ -1,32 +1,143 @@
 @layer base {
   * {
-    @apply border-gray-300 rounded-md;
+    @apply border-gray-300 rounded-md!;
   }
 
   h1 {
     @apply text-4xl font-medium;
   }
 
+  a {
+    @apply text-primary;
+  }
+
+  main {
+    @apply flex flex-col flex-1;
+  }
+
+  .brand-image {
+    @apply size-10;
+  }
+
+  section:not(:first-of-type) {
+    @apply mt-32 py-20 px-8;
+
+    & > h1 + p {
+      @apply text-lg mt-4 mb-8;
+    }
+  }
+
+  .hero {
+    @apply py-20 px-8 bg-primary text-white relative rounded-none!;
+
+    & p {
+      @apply text-lg my-8;
+    }
+
+    & .cta {
+      @apply flex flex-col gap-4 mt-4 text-center;
+
+      @variant md {
+        @apply flex-row;
+      }
+    }
+
+    & a {
+      @apply px-4 py-2;
+
+      @variant md {
+        @apply min-w-40;
+      }
+    }
+
+    & .login {
+      @apply bg-accent text-white;
+    }
+
+    & .signup {
+      @apply bg-white;
+    }
+
+    .wavy {
+      background-image: url("/svg/wavy.svg");
+      background-repeat: no-repeat;
+      @apply w-full h-40 block rounded-none! object-contain absolute left-0 right-0 bottom-0 translate-y-[98%] text-center overflow-hidden;
+
+      @variant md {
+        @apply h-80;
+      }
+    }
+  }
+
+  section.cta {
+    @apply bg-primary text-white rounded-none!;
+
+    a {
+      @apply px-4 py-2 bg-white text-primary;
+    }
+  }
+
+  footer {
+    @apply w-full flex flex-col gap-2 text-center border-t px-4 py-4 rounded-none!;
+
+    & div {
+      @apply flex gap-2 justify-center;
+    }
+
+    & h1 {
+      @apply text-base;
+    }
+
+    & .copyright {
+      @apply text-sm;
+    }
+
+    @variant md {
+      @apply flex-row justify-between;
+    }
+  }
+
+  .form-section {
+    @apply px-4 my-auto mx-auto w-full flex items-center justify-center;
+
+    @variant md {
+      @apply w-md bg-white shadow border px-10 py-12;
+    }
+
+    & div {
+      @apply w-full;
+    }
+
+    & h1 + p {
+      @apply mt-4 mb-8;
+    }
+
+    & form {
+      @apply flex flex-col gap-4;
+
+      & .or-text {
+        @apply relative flex items-center justify-center;
+      }
+    }
+
+    & .form-field {
+      @apply flex flex-col gap-2;
+    }
+
+    & input {
+      @apply px-1.5 py-2 border border-gray-600;
+    }
+
+    & button {
+      @apply bg-primary text-white p-2 mt-4 text-lg;
+    }
+  }
+
   .dashboard-body {
-    @apply px-4 py-6;
+    @apply px-4;
 
-    & > div:first-child {
-      @apply flex flex-col gap-4 mb-6;
-
-      & nav {
-        @apply flex gap-4 w-full;
-      }
-
-      & a {
-        @apply flex-1 w-full text-center p-2 text-lg border;
-      }
-
-      & .active {
-      }
-
-      & > p {
-        @apply text-3xl font-medium;
-      }
+    & p:first-child {
+      @apply text-3xl font-medium mb-6;
     }
   }
 }

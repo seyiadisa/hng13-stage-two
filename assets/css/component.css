@@ -1,5 +1,6 @@
 @layer components {
-  .dashboard-header {
+  .dashboard-header,
+  .app-header {
     width: 100%;
     height: 64px;
     @apply px-4 py-6 flex items-center justify-between rounded-none border-b;
@@ -7,13 +8,53 @@
     & div:first-child {
       @apply flex items-center gap-2;
 
-      & img {
-        @apply size-10;
-      }
-
       & h1 {
         @apply text-2xl;
       }
+    }
+  }
+
+  .dashboard-header button {
+    @apply bg-white border shadow p-1.5 flex items-center justify-center gap-2;
+
+    & span:last-child {
+      @apply text-sm hidden;
+    }
+  }
+
+  .dashboard-header + nav {
+    @apply flex gap-4 mb-6 px-8 mt-4;
+
+    @variant md {
+      @apply w-md;
+    }
+
+    & a {
+      @apply flex-1 w-full bg-accent text-white text-center p-2 text-lg border;
+    }
+
+    & .active {
+      @apply bg-white text-primary;
+    }
+  }
+
+  .landing-cards {
+    @apply flex flex-col gap-4 w-full items-center;
+
+    @variant md {
+      @apply flex-row flex-wrap items-center;
+    }
+
+    & .landing-card {
+      @apply w-full bg-white border shadow-sm p-4;
+
+      @variant md {
+        @apply flex-1 min-w-xs;
+      }
+    }
+
+    & h2 {
+      @apply text-xl font-medium mb-4;
     }
   }
 
@@ -28,7 +69,7 @@
       @apply w-full bg-white border shadow-sm p-4;
 
       @variant md {
-        @apply flex-1;
+        @apply min-w-xs flex-1;
       }
 
       & h2 {
@@ -37,6 +78,22 @@
 
       & h2 + p {
         @apply text-2xl font-medium;
+      }
+    }
+  }
+
+  .ticket-body {
+    @apply px-4;
+
+    & > p:first-of-type {
+      @apply text-lg mt-2 mb-6;
+    }
+
+    & .add-ticket-button {
+      @apply bg-primary text-white w-full px-4 py-2;
+
+      @variant md {
+        @apply w-3xs;
       }
     }
   }

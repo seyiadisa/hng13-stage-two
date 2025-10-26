@@ -22,5 +22,5 @@ body {
 .body {
   width: 100vw;
   max-width: 1440px;
-  @apply bg-background text-foreground min-h-dvh;
+  @apply flex flex-col bg-background text-foreground min-h-dvh;
 }
