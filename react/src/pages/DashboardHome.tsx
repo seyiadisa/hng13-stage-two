@@ -1,5 +1,5 @@
 import DashboardCard from "../components/dashboard/Card";
-import { cards } from "../../../assets/js/cards";
+import { cards } from "@ticketapp/shared";
 
 export default function dashboard() {
   return (
