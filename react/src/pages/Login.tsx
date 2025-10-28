@@ -1,6 +1,17 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { handleLogin, validateLoginInput } from "@ticketapp/shared";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const status = await handleLogin(e);
+
+    if (status?.success) {
+      navigate("/dashboard");
+    }
+  };
+
   return (
     <main>
       <section className="form-section">
@@ -8,7 +19,11 @@ export default function Login() {
           <h1>Welcome Back</h1>
           <p>Sign in to your Kanbanize account</p>
 
-          <form>
+          <form
+            onSubmit={onSubmit}
+            onInput={validateLoginInput}
+            onBlur={validateLoginInput}
+          >
             <div className="form-field">
               <label htmlFor="email">Email Address</label>
               <input
@@ -18,6 +33,7 @@ export default function Login() {
                 required
                 placeholder="example@email.com"
               />
+              <span className="error error-email"></span>
             </div>
             <div className="form-field">
               <label htmlFor="password">Password</label>
@@ -26,8 +42,10 @@ export default function Login() {
                 id="password"
                 name="password"
                 required
+                minLength={8}
                 placeholder="••••••••"
               />
+              <span className="error error-password"></span>
             </div>
 
             <button type="submit">Sign In</button>

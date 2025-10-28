@@ -10,6 +10,7 @@ import Signup from "./pages/Signup.tsx";
 import Login from "./pages/Login.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import AppFooter from "./components/layouts/footer.tsx";
+import ProtectedRoute from "./components/layouts/ProtectedRoute.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -22,8 +23,22 @@ createRoot(document.getElementById("root")!).render(
           <Route path="auth/signup" element={<Signup />} />
 
           <Route element={<DashboardLayout />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="tickets" element={<TicketManagement />} />
+            <Route
+              path="dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="tickets"
+              element={
+                <ProtectedRoute>
+                  <TicketManagement />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
           <Route path="*" element={<NotFound />} />

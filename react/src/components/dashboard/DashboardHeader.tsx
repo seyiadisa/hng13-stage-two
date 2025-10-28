@@ -1,8 +1,15 @@
-import { Link, useLocation } from "react-router";
+import { logout } from "@ticketapp/shared";
+import { Link, useLocation, useNavigate } from "react-router";
 import { NavLink } from "react-router";
 
 export default function DashboardHeader() {
   const pathname = useLocation().pathname;
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate(0);
+  };
 
   return (
     <>
@@ -20,9 +27,9 @@ export default function DashboardHeader() {
           </h1>
         </div>
 
-        <button aria-label="Logout">
+        <button aria-label="Logout" onClick={handleLogout}>
           <span className="icon-logout" />
-          <span>Logout</span>
+          <span className="text">Logout</span>
         </button>
       </header>
       <nav>
