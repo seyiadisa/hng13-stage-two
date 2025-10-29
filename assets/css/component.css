@@ -3,7 +3,7 @@
   .app-header {
     width: 100%;
     height: 64px;
-    @apply px-4 py-6 flex items-center justify-between rounded-none border-b;
+    @apply px-4 py-6 flex items-center justify-between border-b rounded-none;
 
     & div:first-child {
       @apply flex items-center gap-2;
@@ -18,7 +18,7 @@
     @apply bg-white border shadow p-1.5 flex items-center justify-center gap-2;
 
     & span:last-child {
-      @apply text-sm hidden;
+      @apply text-sm hidden md:block text-red-500;
     }
   }
 
@@ -30,11 +30,11 @@
     }
 
     & a {
-      @apply flex-1 w-full bg-accent text-white text-center p-2 text-lg border;
+      @apply flex-1 w-full text-primary text-center p-2 text-lg border;
     }
 
     & .active {
-      @apply bg-white text-primary;
+      @apply bg-accent text-white;
     }
   }
 
@@ -83,7 +83,7 @@
   }
 
   .ticket-body {
-    @apply px-4;
+    @apply px-4 text-center mx-auto;
 
     & > p:first-of-type {
       @apply text-lg mt-2 mb-6;
@@ -94,6 +94,73 @@
 
       @variant md {
         @apply w-3xs;
+      }
+    }
+  }
+
+  .ticket-cards {
+    @apply flex flex-col gap-8 mt-8 w-full items-stretch mb-20;
+
+    @variant md {
+      @apply flex-row flex-wrap;
+    }
+
+    & .ticket-card {
+      @apply flex flex-col gap-4 w-full border shadow bg-white p-6;
+
+      @variant md {
+        @apply min-w-xs flex-1;
+      }
+
+      & h2 {
+        @apply text-xl font-medium;
+      }
+
+      & h2 + p {
+        @apply flex-1;
+      }
+
+      & .badges {
+        @apply flex gap-2;
+
+        & span {
+          @apply py-1 px-4 rounded-full text-sm;
+        }
+
+        & .open {
+          @apply text-green-900  bg-green-100;
+        }
+        & .in_progress {
+          @apply text-amber-900  bg-amber-100;
+        }
+        & .closed {
+          @apply text-gray-900  bg-gray-100;
+        }
+        & .high {
+          @apply text-red-900  bg-red-100;
+        }
+        & .medium {
+          @apply text-amber-900  bg-amber-100;
+        }
+        & .low {
+          @apply text-blue-900  bg-blue-100;
+        }
+      }
+
+      & .buttons {
+        @apply flex items-center gap-2 w-full;
+      }
+
+      & button {
+        @apply hover:bg-gray-200 flex-1 flex items-center justify-center gap-2 p-2 font-medium;
+      }
+
+      & .btn-edit {
+        @apply border;
+      }
+
+      & .btn-delete {
+        @apply border text-red-500;
       }
     }
   }

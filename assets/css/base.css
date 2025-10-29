@@ -1,6 +1,6 @@
 @layer base {
   * {
-    @apply border-gray-300 rounded-md!;
+    @apply border-gray-300 rounded-lg!;
   }
 
   h1 {
@@ -136,6 +136,10 @@
 
     & .form-field {
       @apply flex flex-col gap-2;
+
+      & .error {
+        @apply text-red-700;
+      }
     }
 
     & input {
@@ -144,6 +148,76 @@
 
     & button {
       @apply bg-primary text-white p-2 mt-4 text-lg;
+    }
+  }
+
+  .modal-overlay {
+    @apply w-screen h-screen absolute inset-0 bg-black/50 flex items-center justify-center p-4 mx-auto;
+  }
+
+  .modal {
+    @apply flex z-50 bg-white p-6 w-full max-w-md flex-col gap-4;
+  }
+
+  .modal-ticket-form {
+    & h2 {
+      @apply text-2xl font-medium;
+    }
+
+    & .form-field {
+      @apply flex flex-col items-start gap-2;
+
+      & input,
+      & textarea,
+      & select {
+        @apply px-1.5 py-2 border border-gray-600 w-full;
+      }
+
+      & label:has(+ [required])::after {
+        content: "*";
+        @apply text-red-500;
+      }
+    }
+
+    & .form-actions {
+      @apply flex gap-4 mt-4;
+
+      & button {
+        @apply flex-1 p-2 text-lg mt-0;
+      }
+
+      & .btn-primary {
+        @apply bg-primary hover:bg-primary/80 text-white;
+      }
+
+      & .btn-secondary {
+        @apply bg-gray-200 hover:bg-gray-300 text-gray-800;
+      }
+    }
+    & select {
+      @apply appearance-none;
+    }
+  }
+
+  .modal-ticket-delete {
+    & h2 {
+      @apply mb-8;
+    }
+
+    & .actions {
+      @apply flex gap-4;
+
+      & button {
+        @apply flex-1 p-2 text-lg mt-0;
+      }
+
+      & .btn-primary {
+        @apply bg-red-500 hover:bg-red-400 text-white;
+      }
+
+      & .btn-secondary {
+        @apply bg-gray-200 hover:bg-gray-300 text-gray-800;
+      }
     }
   }
 
