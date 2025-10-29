@@ -19,6 +19,7 @@ app.use(
     credentials: true,
   }),
 );
+app.options("*", cors());
 
 const SECRET = process.env.JWT_SECRET;
 const ACCESS_EXP = process.env.ACCESS_EXP || "1h";
