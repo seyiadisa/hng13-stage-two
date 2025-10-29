@@ -7,7 +7,18 @@ import { randomUUID } from "crypto";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://stage-two-react.netlify.app",
+      "https://stage-two-vue.netlify.app/",
+      "https://stage-two-twig-app.onrender.com/",
+      "http://localhost:5173",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+  }),
+);
 
 const SECRET = process.env.JWT_SECRET;
 const ACCESS_EXP = process.env.ACCESS_EXP || "1h";
