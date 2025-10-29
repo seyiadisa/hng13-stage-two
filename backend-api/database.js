@@ -26,7 +26,7 @@ db.run(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT,
     description TEXT,
-    status TEXT,
+    status TEXT CHECK(status IN ('open', 'in_progress', 'closed')),
     priority TEXT,
     owner_id INTEGER,
     created_at INTEGER,

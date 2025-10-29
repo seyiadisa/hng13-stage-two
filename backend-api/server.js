@@ -120,7 +120,7 @@ app.get("/tickets", requireAuth, (req, res) => {
 });
 
 app.post("/tickets", requireAuth, (req, res) => {
-  const { title, description, status = "open", priority = "medium" } = req.body;
+  const { title, description = "", status, priority = "medium" } = req.body;
   const now = Date.now();
   db.prepare(
     `
@@ -132,35 +132,76 @@ app.post("/tickets", requireAuth, (req, res) => {
   res.status(201).json({ ok: true });
 });
 
-app.get("/api/dashboard", requireAuth, (req, res) => {
-  const total = db
-    .query("SELECT COUNT(*) AS count FROM tickets WHERE user_id = ?")
-    .get(req.user.id).count;
+app.put("/tickets/:id", requireAuth, (req, res) => {
+  const { id } = req.params;
+  const { title, description, status, priority } = req.body;
 
-  const open = db
-    .query(
-      "SELECT COUNT(*) AS count FROM tickets WHERE user_id = ? AND status = 'open'",
-    )
-    .get(req.user.id).count;
+  if (!title || !status)
+    return res.status(400).json({ error: "Title and status are required" });
 
-  const in_progress = db
-    .query(
-      "SELECT COUNT(*) AS count FROM tickets WHERE user_id = ? AND status = 'in_progress'",
-    )
-    .get(req.user.id).count;
+  if (!["open", "in_progress", "closed"].includes(status))
+    return res.status(400).json({ error: "Invalid status" });
 
-  const closed = db
-    .query(
-      "SELECT COUNT(*) AS count FROM tickets WHERE user_id = ? AND status = 'closed'",
-    )
-    .get(req.user.id).count;
+  if (priority && !["low", "medium", "high"].includes(priority))
+    return res.status(400).json({ error: "Invalid priority" });
 
-  res.json({
-    total_tickets: total,
-    open_tickets: open,
-    in_progress_tickets: in_progress,
-    resolved_tickets: closed,
-  });
+  db.query(
+    "UPDATE tickets SET title = ?, description = ?, status = ?, priority = ? WHERE id = ? AND owner_id = ?",
+  ).run(title, description || "", status, priority, id, req.user.userId);
+
+  res.json({ message: "Ticket updated successfully" });
 });
 
-app.listen(process.env.PORT || 4000);
+app.delete("/tickets/:id", requireAuth, (req, res) => {
+  const { id } = req.params;
+  db.query("DELETE FROM tickets WHERE id = ? AND owner_id = ?").run(
+    id,
+    req.user.userId,
+  );
+  res.json({ message: "Ticket deleted successfully" });
+});
+
+// Protected: dashboard
+app.get("/dashboard", requireAuth, (req, res) => {
+  try {
+    const total = db
+      .query("SELECT COUNT(*) AS count FROM tickets WHERE owner_id = ?")
+      .get(req.user.userId).count;
+
+    const open = db
+      .query(
+        "SELECT COUNT(*) AS count FROM tickets WHERE owner_id = ? AND status = 'open'",
+      )
+      .get(req.user.userId).count;
+
+    const in_progress = db
+      .query(
+        "SELECT COUNT(*) AS count FROM tickets WHERE owner_id = ? AND status = 'in_progress'",
+      )
+      .get(req.user.userId).count;
+
+    const closed = db
+      .query(
+        "SELECT COUNT(*) AS count FROM tickets WHERE owner_id = ? AND status = 'closed'",
+      )
+      .get(req.user.userId).count;
+
+    res.json({
+      total_tickets: total,
+      open_tickets: open,
+      in_progress_tickets: in_progress,
+      closed_tickets: closed,
+    });
+  } catch (error) {
+    res.json({
+      total_tickets: 0,
+      open_tickets: 0,
+      in_progress_tickets: 0,
+      closed_tickets: 0,
+    });
+  }
+});
+
+app.listen(process.env.PORT || 4000, () => {
+  console.log(`Server running on port ${process.env.PORT || 4000}`);
+});
