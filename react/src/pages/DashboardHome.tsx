@@ -1,19 +1,29 @@
+import { useEffect, useState } from "react";
 import DashboardCard from "../components/dashboard/Card";
-import { cards } from "@ticketapp/shared";
+import { getDashboardStats } from "@ticketapp/shared";
 
-export default function dashboard() {
+export default function Dashboard() {
+  const [stats, setStats] = useState({});
+
+  useEffect(() => {
+    async function getStats() {
+      setStats(await getDashboardStats());
+    }
+
+    getStats();
+  }, []);
+
   return (
     <div className="dashboard-body">
       <p>Welcome back, Admin!</p>
 
       <section>
         <ul className="dashboard-cards">
-          {cards.map((card, index) => (
+          {Object.entries(stats).map(([title, amount]) => (
             <DashboardCard
-              key={index}
-              title={card.title}
-              amount={card.amount}
-              color={card.color}
+              title={(title as string).split("_").join(" ")}
+              amount={amount as number}
+              key={title}
             />
           ))}
         </ul>
