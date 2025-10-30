@@ -112,7 +112,7 @@
   }
 
   .form-section {
-    @apply px-4 my-auto mx-auto w-full flex items-center justify-center;
+    @apply px-4 my-12 mx-auto w-full flex items-center justify-center;
 
     @variant md {
       @apply w-md bg-white shadow border px-10 py-12;

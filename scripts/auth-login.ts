@@ -23,7 +23,7 @@ const loginSchema = z.object({
 type fieldTypes = "email" | "password";
 
 export const validateLoginInput = (
-  e: InputEvent | React.FormEvent<HTMLFormElement>,
+  e: InputEvent | FocusEvent | React.FormEvent<HTMLFormElement>,
 ) => {
   // return if e.target is a button element
   if ((e.target as HTMLElement).tagName === "BUTTON") return;

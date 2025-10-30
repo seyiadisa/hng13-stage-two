@@ -19,11 +19,11 @@ export default function Dashboard() {
 
       <section>
         <ul className="dashboard-cards">
-          {Object.entries(stats).map(([title, amount]) => (
+          {Object.entries(stats).map(([title, amount], index) => (
             <DashboardCard
               title={(title as string).split("_").join(" ")}
               amount={amount as number}
-              key={title}
+              key={index}
             />
           ))}
         </ul>
