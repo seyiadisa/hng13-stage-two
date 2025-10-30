@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+<!--
+ Required Documentation
+Each framework implementation must include a README.md containing:
+A list of frameworks and libraries used.
+Setup and execution steps for each version.
+Instructions for switching between React, Vue, and Twig versions.
+Short explanation of UI components and state structure.
+Notes on accessibility and known issues.
+Example test user credentials.
+ -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# React Implementation
 
-Currently, two official plugins are available:
+This document outlines the React.js implementation of the HNG 13 Stage Two project.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Frameworks and Libraries Used
 
-## React Compiler
+- **React.js:** A JavaScript library for building user interfaces.
+- **React Router:** Declarative routing for React.
+- **Zod:** For type schema validation.
+- **Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
+- **Vite:** A fast build tool for modern web projects.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Setup and Execution Steps
 
-## Expanding the ESLint configuration
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/hng13-stage-two.git
+    cd hng13-stage-two
+    ```
+2.  **Navigate to the React directory:**
+    ```bash
+    cd react
+    ```
+3.  **Install dependencies:**
+    ```bash
+    bun install
+    ```
+    Create a `.env` file in the `vue` directory with the following content:
+    ```
+    VITE_BACKEND_URL=http://localhost:4000
+    ```
+    (Adjust the URL if your backend is running on a different address/port.)
+4.  **Run the development server:**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+    ```bash
+    bun run dev
+    ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+    The application will typically be available at `http://localhost:5173`.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+5.  **Build for production:**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    ```bash
+    bun run build
+    ```
