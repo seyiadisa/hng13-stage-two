@@ -10,13 +10,16 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",
+    "@ticketapp/shared": "link:@ticketapp/shared",
     "tailwindcss": "^4.1.16",
-    "vue": "^3.5.22"
+    "vue": "^3.5.22",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@types/node": "^24.6.0",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
+    "netlify-cli": "^23.9.5",
     "typescript": "~5.9.3",
     "vite": "^7.1.7",
     "vue-tsc": "^3.1.0"
