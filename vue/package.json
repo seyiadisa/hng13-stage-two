@@ -13,7 +13,8 @@
     "@ticketapp/shared": "link:@ticketapp/shared",
     "tailwindcss": "^4.1.16",
     "vue": "^3.5.22",
-    "vue-router": "4"
+    "vue-router": "4",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@types/node": "^24.6.0",

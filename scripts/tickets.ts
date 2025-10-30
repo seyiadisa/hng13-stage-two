@@ -7,7 +7,11 @@ export type Ticket = {
 };
 
 export const createTicket = async (
-  e: SubmitEvent | React.FormEvent<HTMLFormElement>,
+  e:
+    | SubmitEvent
+    | (typeof import("react") extends Record<string, any>
+        ? import("react").FormEvent<HTMLFormElement>
+        : never),
 ) => {
   e.preventDefault();
 
@@ -51,7 +55,11 @@ export const getTickets = async () => {
 };
 
 export const updateTicket = async (
-  e: SubmitEvent | React.FormEvent<HTMLFormElement>,
+  e:
+    | SubmitEvent
+    | (typeof import("react") extends Record<string, any>
+        ? import("react").FormEvent<HTMLFormElement>
+        : never),
   id: number,
 ) => {
   e.preventDefault();

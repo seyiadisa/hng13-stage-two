@@ -34,7 +34,12 @@ const signupSchema = z
 type fieldTypes = "name" | "email" | "password" | "confirmPassword";
 
 export const validateSignupInput = (
-  e: InputEvent | React.FormEvent<HTMLFormElement>,
+  e:
+    | InputEvent
+    | FocusEvent
+    | (typeof import("react") extends Record<string, any>
+        ? import("react").FormEvent<HTMLFormElement>
+        : never),
 ) => {
   // return if e.target is a button element
   if ((e.target as HTMLElement).tagName === "BUTTON") return;
@@ -49,7 +54,7 @@ export const validateSignupInput = (
 
   if (!parsed.success) {
     errorField.style.display = "block";
-    errorField.innerText = parsed.error.issues[0].message;
+    errorField.innerText = parsed.error.issues[0]?.message ?? "Invalid input";
   } else {
     errorField.style.display = "none";
     errorField.innerText = "";
@@ -57,7 +62,11 @@ export const validateSignupInput = (
 };
 
 export const handleSignup = async (
-  e: SubmitEvent | React.FormEvent<HTMLFormElement>,
+  e:
+    | SubmitEvent
+    | (typeof import("react") extends Record<string, any>
+        ? import("react").FormEvent<HTMLFormElement>
+        : never),
 ) => {
   e.preventDefault();
 
