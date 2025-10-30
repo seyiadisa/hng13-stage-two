@@ -63,8 +63,6 @@ function App() {
         </p>
         <Link to="/auth/signup">Start free today</Link>
       </section>
-
-      <div id="toasts"></div>
     </>
   );
 }
