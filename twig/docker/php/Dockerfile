@@ -1,18 +1,19 @@
-FROM oven/bun:1 AS frontend
+FROM php:8.4-apache
+RUN apt-get update && apt-get install -y unzip git libicu-dev && docker-php-ext-install intl
+COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
+COPY --from=oven/bun:1 /usr/local/bin /usr/local/bin
 WORKDIR /app
 COPY twig/ ./twig
 COPY assets/ ./assets
+COPY scripts/ ./scripts
+WORKDIR /app/scripts
+RUN bun link
 WORKDIR /app/twig
-RUN bun ci
+RUN bun install
 RUN bun run build
-
-
-FROM php:8.4-apache
-RUN apt-get update && apt-get install -y unzip git libicu-dev && docker-php-ext-install intl
 WORKDIR /var/www/html
-COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
 COPY twig/src .
-COPY --from=frontend /app/twig/ .
+COPY twig/src/.htaccess .
 COPY twig/docker/apache/apache.conf /etc/apache2/sites-available/apache.conf
 RUN composer install
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf &&\

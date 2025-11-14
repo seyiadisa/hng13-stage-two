@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
+    {# Link to the bundled CSS file from Vite #}
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <a href="/" class="text-xl font-bold">TicketApp</a>
+            <div>
+                {% if isAuthenticated %}
+                    <a href="/dashboard" class="px-3 py-2">Dashboard</a>
+                    <a href="/tickets" class="px-3 py-2">Tickets</a>
+                    {# This would be a POST request in a real app to log out #}
+                    <a href="/auth/login" class="px-3 py-2">Logout</a>
+                {% else %}
+                    <a href="/auth/login" class="px-3 py-2">Login</a>
+                    <a href="/auth/signup" class="px-3 py-2">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    {% block body %}{% endblock %}
+
+    {# Link to the bundled JavaScript file from Vite #}
+    <script src="/index.js" type="module"></script>
+</body>
+</html>

@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",
-    "tailwindcss": "^4.1.16"
+    "@ticketapp/shared": "link:@ticketapp/shared",
+    "tailwindcss": "^4.1.16",
+    "zod": "^4.1.12"
   }
 }

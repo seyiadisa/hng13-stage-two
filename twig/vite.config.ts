@@ -10,8 +10,8 @@ export default defineConfig({
         main: "./src/index.ts",
       },
       output: {
-        entryFileNames: "bundle.js",
-        assetFileNames: "bundle.css",
+        entryFileNames: "index.js",
+        assetFileNames: "index.css",
       },
     },
     cssCodeSplit: false,
