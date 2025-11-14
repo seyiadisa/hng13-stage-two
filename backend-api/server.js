@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "https://stage-two-react.netlify.app",
-      "https://stage-two-vue.netlify.app/",
+      "https://chosen-stage-two-react.vercel.app/",
+      "https://chosen-stage-two-vue.vercel.app/",
       "https://stage-two-twig-app.onrender.com/",
       "http://localhost:5173",
     ],
